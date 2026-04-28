@@ -1,54 +1,54 @@
 # Superpowers
 
-Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
+Superpowers é uma metodologia completa de desenvolvimento de software para seus agentes de código, construída sobre um conjunto de skills composáveis e algumas instruções iniciais que garantem que seu agente as utilize.
 
-## How it works
+## Como funciona
 
-It starts from the moment you fire up your coding agent. As soon as it sees that you're building something, it *doesn't* just jump into trying to write code. Instead, it steps back and asks you what you're really trying to do. 
+Tudo começa no momento em que você inicializa seu agente de código. Assim que ele percebe que você está construindo algo, ele *não* simplesmente sai escrevendo código. Em vez disso, ele dá um passo atrás e pergunta o que você realmente quer fazer.
 
-Once it's teased a spec out of the conversation, it shows it to you in chunks short enough to actually read and digest. 
+Depois de extrair uma especificação da conversa, ele a apresenta em partes pequenas o suficiente para você ler e absorver de verdade.
 
-After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. It emphasizes true red/green TDD, YAGNI (You Aren't Gonna Need It), and DRY. 
+Após você aprovar o design, seu agente monta um plano de implementação claro o bastante para ser seguido por um engenheiro júnior entusiasmado, sem bom gosto, sem julgamento, sem contexto do projeto e com aversão a testes. O plano enfatiza TDD verdadeiro com ciclo vermelho/verde, YAGNI (You Aren't Gonna Need It) e DRY.
 
-Next up, once you say "go", it launches a *subagent-driven-development* process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It's not uncommon for Claude to be able to work autonomously for a couple hours at a time without deviating from the plan you put together.
+Em seguida, quando você diz "vai", ele inicia um processo de *desenvolvimento orientado a subagentes*, fazendo com que agentes trabalhem em cada tarefa de engenharia, inspecionando e revisando o trabalho deles, e avançando. Não é raro o Claude conseguir trabalhar autonomamente por algumas horas sem desviar do plano que você elaborou.
 
-There's a bunch more to it, but that's the core of the system. And because the skills trigger automatically, you don't need to do anything special. Your coding agent just has Superpowers.
+Tem muito mais coisa, mas esse é o núcleo do sistema. E como as skills são ativadas automaticamente, você não precisa fazer nada especial. Seu agente de código simplesmente tem Superpowers.
 
 
-## Sponsorship
+## Patrocínio
 
-If Superpowers has helped you do stuff that makes money and you are so inclined, I'd greatly appreciate it if you'd consider [sponsoring my opensource work](https://github.com/sponsors/obra).
+Se o Superpowers te ajudou a fazer coisas que geram dinheiro e você estiver disposto, ficaria muito grato se considerasse [patrocinar meu trabalho opensource](https://github.com/sponsors/obra).
 
-Thanks! 
+Obrigado!
 
 - Jesse
 
 
-## Installation
+## Instalação
 
-**Note:** Installation differs by platform. 
+**Nota:** A instalação varia conforme a plataforma.
 
-### Claude Code Official Marketplace
+### Marketplace Oficial do Claude Code
 
-Superpowers is available via the [official Claude plugin marketplace](https://claude.com/plugins/superpowers)
+O Superpowers está disponível no [marketplace oficial de plugins do Claude](https://claude.com/plugins/superpowers).
 
-Install the plugin from Anthropic's official marketplace:
+Instale o plugin pelo marketplace oficial da Anthropic:
 
 ```bash
 /plugin install superpowers@claude-plugins-official
 ```
 
-### Claude Code (Superpowers Marketplace)
+### Claude Code (Marketplace do Superpowers)
 
-The Superpowers marketplace provides Superpowers and some other related plugins for Claude Code.
+O marketplace do Superpowers oferece o Superpowers e outros plugins relacionados para o Claude Code.
 
-In Claude Code, register the marketplace first:
+No Claude Code, registre o marketplace primeiro:
 
 ```bash
 /plugin marketplace add obra/superpowers-marketplace
 ```
 
-Then install the plugin from this marketplace:
+Depois instale o plugin desse marketplace:
 
 ```bash
 /plugin install superpowers@superpowers-marketplace
@@ -56,46 +56,46 @@ Then install the plugin from this marketplace:
 
 ### OpenAI Codex CLI
 
-- Open plugin search interface
+- Abra a interface de busca de plugins
 
 ```bash
 /plugins
 ```
 
-Search for Superpowers
+Busque por Superpowers
 
 ```bash
 superpowers
 ```
 
-Select `Install Plugin`
+Selecione `Install Plugin`
 
 ### OpenAI Codex App
 
-- In the Codex app, click on Plugins in the sidebar.
-- You should see `Superpowers` in the Coding section. 
-- Click the `+` next to Superpowers and follow the prompts.
+- No aplicativo Codex, clique em Plugins na barra lateral.
+- Você verá `Superpowers` na seção Coding.
+- Clique no `+` ao lado do Superpowers e siga as instruções.
 
 
 ### Cursor (via Plugin Marketplace)
 
-In Cursor Agent chat, install from marketplace:
+No chat do Cursor Agent, instale pelo marketplace:
 
 ```text
 /add-plugin superpowers
 ```
 
-or search for "superpowers" in the plugin marketplace.
+ou busque por "superpowers" no marketplace de plugins.
 
 ### OpenCode
 
-Tell OpenCode:
+Diga ao OpenCode:
 
 ```
 Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
 ```
 
-**Detailed docs:** [docs/README.opencode.md](docs/README.opencode.md)
+**Documentação detalhada:** [docs/README.opencode.md](docs/README.opencode.md)
 
 ### GitHub Copilot CLI
 
@@ -110,89 +110,89 @@ copilot plugin install superpowers@superpowers-marketplace
 gemini extensions install https://github.com/obra/superpowers
 ```
 
-To update:
+Para atualizar:
 
 ```bash
 gemini extensions update superpowers
 ```
 
-## The Basic Workflow
+## O Fluxo de Trabalho Básico
 
-1. **brainstorming** - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation. Saves design document.
+1. **brainstorming** - Ativado antes de escrever código. Refina ideias brutas através de perguntas, explora alternativas e apresenta o design em seções para validação. Salva o documento de design.
 
-2. **using-git-worktrees** - Activates after design approval. Creates isolated workspace on new branch, runs project setup, verifies clean test baseline.
+2. **using-git-worktrees** - Ativado após aprovação do design. Cria um workspace isolado em um novo branch, executa o setup do projeto e verifica uma baseline limpa de testes.
 
-3. **writing-plans** - Activates with approved design. Breaks work into bite-sized tasks (2-5 minutes each). Every task has exact file paths, complete code, verification steps.
+3. **writing-plans** - Ativado com o design aprovado. Divide o trabalho em tarefas pequenas (2 a 5 minutos cada). Cada tarefa tem caminhos de arquivo exatos, código completo e etapas de verificação.
 
-4. **subagent-driven-development** or **executing-plans** - Activates with plan. Dispatches fresh subagent per task with two-stage review (spec compliance, then code quality), or executes in batches with human checkpoints.
+4. **subagent-driven-development** ou **executing-plans** - Ativado com o plano. Despacha um novo subagente por tarefa com revisão em dois estágios (conformidade com a spec e depois qualidade do código), ou executa em lotes com checkpoints humanos.
 
-5. **test-driven-development** - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass, commit. Deletes code written before tests.
+5. **test-driven-development** - Ativado durante a implementação. Aplica o ciclo VERMELHO-VERDE-REFATORAR: escrever teste que falha, ver ele falhar, escrever código mínimo, ver ele passar, commitar. Deleta código escrito antes dos testes.
 
-6. **requesting-code-review** - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
+6. **requesting-code-review** - Ativado entre tarefas. Revisa em relação ao plano e reporta problemas por severidade. Problemas críticos bloqueiam o progresso.
 
-7. **finishing-a-development-branch** - Activates when tasks complete. Verifies tests, presents options (merge/PR/keep/discard), cleans up worktree.
+7. **finishing-a-development-branch** - Ativado quando as tarefas são concluídas. Verifica os testes, apresenta opções (merge/PR/manter/descartar) e limpa a worktree.
 
-**The agent checks for relevant skills before any task.** Mandatory workflows, not suggestions.
+**O agente verifica as skills relevantes antes de qualquer tarefa.** Fluxos obrigatórios, não sugestões.
 
-## What's Inside
+## O Que Está Incluído
 
-### Skills Library
+### Biblioteca de Skills
 
-**Testing**
-- **test-driven-development** - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)
+**Testes**
+- **test-driven-development** - Ciclo VERMELHO-VERDE-REFATORAR (inclui referência de antipadrões de teste)
 
 **Debugging**
-- **systematic-debugging** - 4-phase root cause process (includes root-cause-tracing, defense-in-depth, condition-based-waiting techniques)
-- **verification-before-completion** - Ensure it's actually fixed
+- **systematic-debugging** - Processo de causa raiz em 4 fases (inclui técnicas de rastreamento de causa raiz, defesa em profundidade e espera baseada em condições)
+- **verification-before-completion** - Garante que o problema foi realmente corrigido
 
-**Collaboration** 
-- **brainstorming** - Socratic design refinement
-- **writing-plans** - Detailed implementation plans
-- **executing-plans** - Batch execution with checkpoints
-- **dispatching-parallel-agents** - Concurrent subagent workflows
-- **requesting-code-review** - Pre-review checklist
-- **receiving-code-review** - Responding to feedback
-- **using-git-worktrees** - Parallel development branches
-- **finishing-a-development-branch** - Merge/PR decision workflow
-- **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)
+**Colaboração**
+- **brainstorming** - Refinamento de design socrático
+- **writing-plans** - Planos de implementação detalhados
+- **executing-plans** - Execução em lotes com checkpoints
+- **dispatching-parallel-agents** - Fluxos de trabalho com subagentes concorrentes
+- **requesting-code-review** - Checklist pré-revisão
+- **receiving-code-review** - Respondendo ao feedback
+- **using-git-worktrees** - Branches de desenvolvimento paralelo
+- **finishing-a-development-branch** - Fluxo de decisão merge/PR
+- **subagent-driven-development** - Iteração rápida com revisão em dois estágios (conformidade com a spec e qualidade do código)
 
 **Meta**
-- **writing-skills** - Create new skills following best practices (includes testing methodology)
-- **using-superpowers** - Introduction to the skills system
+- **writing-skills** - Crie novas skills seguindo as melhores práticas (inclui metodologia de teste)
+- **using-superpowers** - Introdução ao sistema de skills
 
-## Philosophy
+## Filosofia
 
-- **Test-Driven Development** - Write tests first, always
-- **Systematic over ad-hoc** - Process over guessing
-- **Complexity reduction** - Simplicity as primary goal
-- **Evidence over claims** - Verify before declaring success
+- **Desenvolvimento Orientado a Testes** - Escreva testes primeiro, sempre
+- **Sistemático ao invés de ad-hoc** - Processo ao invés de adivinhação
+- **Redução de complexidade** - Simplicidade como objetivo principal
+- **Evidência ao invés de afirmações** - Verifique antes de declarar sucesso
 
-Read [the original release announcement](https://blog.fsck.com/2025/10/09/superpowers/).
+Leia [o anúncio original de lançamento](https://blog.fsck.com/2025/10/09/superpowers/).
 
-## Contributing
+## Contribuindo
 
-The general contribution process for Superpowers is below. Keep in mind that we don't generally accept contributions of new skills and that any updates to skills must work across all of the coding agents we support.
+O processo geral de contribuição para o Superpowers está abaixo. Tenha em mente que geralmente não aceitamos contribuições de novas skills e que qualquer atualização de skills deve funcionar em todos os agentes de código que suportamos.
 
-1. Fork the repository
-2. Switch to the 'dev' branch
-3. Create a branch for your work
-4. Follow the `writing-skills` skill for creating and testing new and modified skills
-5. Submit a PR, being sure to fill in the pull request template.
+1. Faça um fork do repositório
+2. Mude para o branch 'dev'
+3. Crie um branch para o seu trabalho
+4. Siga a skill `writing-skills` para criar e testar skills novas e modificadas
+5. Envie um PR, tendo o cuidado de preencher o template de pull request
 
-See `skills/writing-skills/SKILL.md` for the complete guide.
+Veja `skills/writing-skills/SKILL.md` para o guia completo.
 
-## Updating
+## Atualizando
 
-Superpowers updates are somewhat coding-agent dependent, but are often automatic.
+As atualizações do Superpowers dependem um pouco do agente de código, mas geralmente são automáticas.
 
-## License
+## Licença
 
-MIT License - see LICENSE file for details
+Licença MIT — veja o arquivo LICENSE para detalhes.
 
-## Community
+## Comunidade
 
-Superpowers is built by [Jesse Vincent](https://blog.fsck.com) and the rest of the folks at [Prime Radiant](https://primeradiant.com).
+O Superpowers é construído por [Jesse Vincent](https://blog.fsck.com) e o restante da equipe da [Prime Radiant](https://primeradiant.com).
 
-- **Discord**: [Join us](https://discord.gg/35wsABTejz) for community support, questions, and sharing what you're building with Superpowers
+- **Discord**: [Junte-se a nós](https://discord.gg/35wsABTejz) para suporte da comunidade, perguntas e para compartilhar o que você está construindo com o Superpowers
 - **Issues**: https://github.com/obra/superpowers/issues
-- **Release announcements**: [Sign up](https://primeradiant.com/superpowers/) to get notified about new versions
+- **Anúncios de lançamento**: [Cadastre-se](https://primeradiant.com/superpowers/) para ser notificado sobre novas versões
