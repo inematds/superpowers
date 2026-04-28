@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.10 — Criando Skills | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.10</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.10</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">🧩 Criando suas próprias Skills</h1>
+  <p class="text-neutral-400 text-lg mb-6">Vá além das skills padrão e crie comportamentos customizados — testados com o mesmo rigor das skills core.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~30 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">🏗️ Anatomia de uma skill</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Uma SKILL.md é um arquivo de texto com estrutura específica: frontmatter YAML com metadados obrigatórios, seguido do conteúdo instrucional em Markdown. O frontmatter define como a skill é identificada e quando ela é ativada. O conteúdo define o que o agente deve fazer quando ativado.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-2">Estrutura completa de uma SKILL.md</h3>
+      <pre class="text-neutral-300 text-sm font-mono overflow-x-auto"><code>---
+name: minha-skill
+description: O que esta skill faz em uma linha
+version: 1.0.0
+triggers:
+  - "palavras que ativam"
+  - "frases de gatilho"
+  - "contextos que aplicam"
+---
+
+# Título da Skill
+
+## Quando aplicar
+[Descreva as situações onde o agente deve usar esta skill]
+
+## O que fazer
+[Instruções detalhadas de comportamento]
+
+## O que NÃO fazer
+[Antipadrões explícitos]
+
+## Exemplos
+[Exemplos concretos de uso correto]</code></pre>
+    </div>
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+      <p class="text-blue-400 font-semibold text-sm">O campo triggers é crítico</p>
+      <p class="text-neutral-300 text-sm mt-1">Os triggers são as frases que o sistema busca no contexto para decidir se deve injetar sua skill. Se estiverem muito genéricos, a skill ativa em contextos errados. Se muito específicos, nunca ativa. Teste com frases reais que você usaria.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">🧪 Testando skills com subagentes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A skill writing-skills do Superpowers foi criada especificamente para testar novas skills. Ela instrui o agente a usar subagentes para simular sessões onde a skill deve e não deve ativar, verificando se o comportamento está correto antes de usar em produção.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">O protocolo de teste de skill</h3>
+      <ol class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span><strong>Teste de ativação positiva:</strong> subagente com um dos triggers. A skill deve ativar e guiar o comportamento correto.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span><strong>Teste de não-ativação:</strong> subagente com contexto similar mas sem o trigger. A skill não deve ativar.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span><strong>Teste adversarial:</strong> subagente tentando subverter ou ignorar a skill. Ela deve manter o comportamento.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span><strong>Teste de borda:</strong> contexto ambíguo onde a skill deve ou não ativar — o critério deve ser claro.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">⚖️ A filosofia: 94% de PRs rejeitados</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O Superpowers tem uma taxa de rejeição de PRs de 94%. Isso não é um problema — é uma característica. Skills são código comportamental que molda como agentes de IA agem em sessões reais. O impacto de uma skill ruim é sistêmico: ela afeta todos os usuários do projeto em todas as sessões.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Por que a barra é alta</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-yellow-400">→</span><span>Skills não são documentação — elas moldam o comportamento de agentes em sessões reais</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-400">→</span><span>Uma skill mal escrita pode degradar a qualidade de todas as sessões de todos os usuários</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-400">→</span><span>O conteúdo é cuidadosamente testado e afinado — mudanças exigem evidência de melhoria</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-400">→</span><span>Skills especializadas pertencem a plugins, não ao core</span></li>
+      </ul>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">A lição para suas skills pessoais</p>
+      <p class="text-neutral-300 text-sm mt-1">O mesmo rigor que o Superpowers aplica ao core deve ser aplicado às suas skills pessoais. Teste-as antes de usar em produção. Uma skill não testada é uma aposta no comportamento do agente.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🏠 Skills core vs. plugins privados</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Nem toda skill que você criar pertence ao core do Superpowers. O critério é simples: a skill seria útil para um desenvolvedor trabalhando em um projeto completamente diferente do seu? Se sim, pode ser candidata ao core. Se não, deve ficar no seu plugin privado.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-2 text-sm">Skills core (universal)</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Metodologia agnóstica de domínio</li>
+          <li>• Útil para qualquer tipo de projeto</li>
+          <li>• Sem dependências específicas</li>
+          <li>• Melhora o processo geral</li>
+        </ul>
+        <p class="text-emerald-400 text-xs mt-2">Ex: brainstorming, tdd, debugging</p>
+      </div>
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+        <h3 class="text-blue-400 font-semibold mb-2 text-sm">Plugin privado (específico)</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Específico ao seu domínio</li>
+          <li>• Referencia tecnologias específicas</li>
+          <li>• Processo específico da sua equipe</li>
+          <li>• Não beneficia outros projetos</li>
+        </ul>
+        <p class="text-blue-400 text-xs mt-2">Ex: deploy para seu cloud específico</p>
+      </div>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">Publicar skills específicas como core polui o projeto para todos e resulta em rejeição. Manter plugins privados bem organizados é mais valioso do que PRs rejeitados ao core.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">📦 Distribuindo e versionando suas skills</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Skills úteis podem ser compartilhadas além do seu projeto pessoal. Um plugin de skills é um repositório Git com a mesma estrutura do Superpowers — apenas as skills específicas do seu domínio — que outros desenvolvedores do mesmo domínio podem instalar.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Estrutura de um plugin de skills</h3>
+      <pre class="text-neutral-300 text-sm font-mono overflow-x-auto"><code>meu-plugin-skills/
+├── skills/
+│   ├── minha-skill-1.md
+│   └── minha-skill-2.md
+├── sync.sh          # copia para o harness
+├── CHANGELOG.md
+└── README.md        # como instalar e usar</code></pre>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Versionamento semântico</p>
+      <p class="text-neutral-300 text-sm mt-1">Use semver para versionar seu plugin. MAJOR quando skills mudam comportamento de forma incompatível, MINOR quando adiciona novas skills, PATCH quando corrige bugs nas skills existentes. Mantenha CHANGELOG.md com as mudanças de cada versão.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: skill customizada do zero ao teste</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Exercício final da trilha: identificar um comportamento recorrente que você quer automatizar, escrever a skill completa, testá-la com o protocolo de 4 testes e documentá-la para uso futuro. Esta é a habilidade que fecha o ciclo — você agora pode customizar o Superpowers para o seu workflow específico.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício final</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Identifique um comportamento que você quer no agente mas que não existe no core</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Escreva a SKILL.md completa com frontmatter, conteúdo e exemplos</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Use writing-skills para executar os 4 testes: ativação, não-ativação, adversarial, borda</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Itere a skill baseado nos resultados dos testes</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Instale a skill no seu harness via sync ou cópia manual</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Use a skill em uma sessão real e verifique que funciona como esperado</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Parabéns — você concluiu a trilha</p>
+      <p class="text-neutral-300 text-sm mt-1">Você percorreu os 10 módulos da trilha Superpowers, do anti-padrão "só escreve o código" à criação de skills customizadas. O Superpowers é uma metodologia viva — use o que aprendeu, adapte ao seu workflow e crie as skills que faltam para o seu domínio.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.10</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Conheço a anatomia completa de uma SKILL.md</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei testar skills com o protocolo de 4 testes via subagentes</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendo a filosofia da barra alta e por que ela protege o projeto</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei distinguir skills core de plugins privados</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei criar e versionar um plugin de skills distribuível</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Criei minha primeira skill customizada do zero ao teste</span></div>
+    </div>
+    <div class="p-4 bg-dark-800 rounded-lg mb-4 text-center">
+      <span class="text-emerald-400 font-bold text-lg">Você concluiu o curso! 🎉</span>
+      <p class="text-neutral-400 text-sm mt-1">Todos os 10 módulos da trilha Superpowers — Desenvolvimento com Agentes de IA</p>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">← Voltar para Trilha</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.10</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.1 — Fundamentos | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,0.18); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+          <span class="text-2xl">⚡</span>
+          <span class="font-bold text-lg hidden sm:inline">Superpowers</span>
+        </a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10">
+          <span class="sm:hidden">T1</span>
+          <span class="hidden sm:inline">Agentes de IA</span>
+        </a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a>
+    <span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a>
+    <span>/</span>
+    <span class="text-emerald-400">Módulo 1.1</span>
+  </nav>
+</div>
+
+<!-- HEADER -->
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4">
+    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.1</span>
+  </div>
+  <h1 class="text-3xl font-extrabold mb-3">🧠 Fundamentos: Por que agentes falham sem método</h1>
+  <p class="text-neutral-400 text-lg mb-6">Entenda por que pedir "só escreve o código" é a raiz de todos os problemas e como a metodologia Superpowers resolve isso.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~25 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <!-- TÓPICO 1 -->
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">🚨 O problema do "só escreve o código"</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O anti-padrão mais comum e mais caro no desenvolvimento com agentes de IA é simples: pedir para o agente implementar algo sem antes definir o que "algo" significa. Parece óbvio evitar, mas a velocidade aparente que o agente oferece seduz desenvolvedores a pular etapas.</p>
+
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Por que isso acontece</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">→</span><span>O agente responde imediatamente com código plausível, criando a ilusão de progresso</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">→</span><span>Requisitos vagos são preenchidos com suposições razoáveis — mas raramente corretas</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">→</span><span>O custo real aparece horas depois, quando o código precisa ser reescrito</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">→</span><span>Cada sessão de reescrita come tokens e tempo que poderiam ter sido evitados</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-dark-700/50 rounded-lg p-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Comparação: com e sem método</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+          <p class="text-red-400 font-semibold mb-2">Sem método</p>
+          <ul class="space-y-1 text-neutral-400">
+            <li>"Cria um sistema de login"</li>
+            <li>→ Agente assume JWT</li>
+            <li>→ Você queria OAuth</li>
+            <li>→ Reescrita completa</li>
+            <li class="text-red-400">Custo: 3-4 horas perdidas</li>
+          </ul>
+        </div>
+        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+          <p class="text-emerald-400 font-semibold mb-2">Com método</p>
+          <ul class="space-y-1 text-neutral-400">
+            <li>Brainstorm: "Que tipo de auth?"</li>
+            <li>→ Spec: OAuth com Google</li>
+            <li>→ Plano aprovado</li>
+            <li>→ Implementação correta</li>
+            <li class="text-emerald-400">Custo: 20 min extras de spec</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÓPICO 2 -->
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">⚙️ O que são Skills e como moldam o agente</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Skills são arquivos de texto especialmente formatados (SKILL.md) que são injetados no contexto do agente via sistema de prompts. Eles funcionam como instruções persistentes que moldam como o agente responde a situações específicas — sem precisar repetir as mesmas instruções toda sessão.</p>
+
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Como uma skill funciona tecnicamente</h3>
+      <div class="space-y-2 text-neutral-300 text-sm font-mono">
+        <p class="text-neutral-500"># Estrutura de uma SKILL.md</p>
+        <p>---</p>
+        <p>name: brainstorming</p>
+        <p>triggers: [brainstorm, spec, "antes de codificar"]</p>
+        <p>---</p>
+        <p class="text-neutral-500"># Conteúdo da skill aqui</p>
+        <p>Quando ativada, faça perguntas antes...</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-5">
+      <h3 class="text-blue-400 font-semibold mb-3">O que o Superpowers oferece out-of-the-box</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>brainstorming</strong> — extrai specs de conversas vagas</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>writing-plans</strong> — cria planos detalhados de implementação</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>tdd</strong> — força o ciclo red-green-refactor</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>executing-plans</strong> — execução com checkpoints humanos</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>debugging</strong> — processo sistemático de 4 fases</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>code-review</strong> — revisão estruturada contra o plano</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TÓPICO 3 -->
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">📦 Instalação e configuração por plataforma</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O Superpowers é um zero-dependency plugin — não precisa de nenhuma ferramenta externa além do harness de agente que você já usa. A instalação varia conforme a plataforma, mas o conceito é o mesmo: copiar os arquivos SKILL.md para o lugar certo e configurar os hooks.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4 border border-dark-600">
+        <h3 class="text-emerald-400 font-semibold mb-2">Claude Code</h3>
+        <div class="text-sm text-neutral-300 font-mono space-y-1">
+          <p class="text-neutral-500"># Instalar globalmente</p>
+          <p>cd ~/.claude</p>
+          <p>git clone [repo] superpowers</p>
+          <p>./superpowers/sync.sh</p>
+        </div>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 border border-dark-600">
+        <h3 class="text-emerald-400 font-semibold mb-2">Cursor / Codex</h3>
+        <div class="text-sm text-neutral-300 font-mono space-y-1">
+          <p class="text-neutral-500"># Por projeto</p>
+          <p>cd seu-projeto</p>
+          <p>git clone [repo] .superpowers</p>
+          <p>./.superpowers/sync.sh</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-5">
+      <h3 class="text-yellow-400 font-semibold mb-2">Dica importante</h3>
+      <p class="text-neutral-300 text-sm">O sync.sh copia os arquivos para o local correto de cada harness. Execute-o após cada atualização do Superpowers para manter as skills sincronizadas. O script detecta automaticamente qual plataforma você está usando.</p>
+    </div>
+  </section>
+
+  <!-- TÓPICO 4 -->
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🔗 Como os hooks funcionam</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Hooks são scripts executados automaticamente pelo harness em momentos específicos da sessão. Diferente das skills (que moldam o comportamento via texto), os hooks executam código real — scripts bash, Python ou qualquer linguagem — e podem modificar inputs, validar outputs e registrar ações.</p>
+
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Tipos de hooks no Claude Code</h3>
+      <ul class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-3">
+          <span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-xs font-mono flex-shrink-0">PreToolUse</span>
+          <span>Executa antes de uma ferramenta. Pode bloquear a execução se retornar exit code não-zero.</span>
+        </li>
+        <li class="flex items-start space-x-3">
+          <span class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-xs font-mono flex-shrink-0">PostToolUse</span>
+          <span>Executa após uma ferramenta. Útil para validar outputs ou registrar ações.</span>
+        </li>
+        <li class="flex items-start space-x-3">
+          <span class="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded text-xs font-mono flex-shrink-0">Stop</span>
+          <span>Executa quando o agente para. Ideal para resumos e relatórios automáticos.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bg-dark-700/50 rounded-lg p-5">
+      <h3 class="text-neutral-300 font-semibold mb-2">Configuração em settings.json</h3>
+      <pre class="text-sm text-neutral-300 font-mono overflow-x-auto"><code>{
+  "hooks": {
+    "PreToolUse": [
+      { "matcher": "Bash", "hooks": [
+        { "type": "command", "command": "~/.claude/hooks/pre-bash.sh" }
+      ]}
+    ]
+  }
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- TÓPICO 5 -->
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">🗺️ O fluxo básico do Superpowers</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O Superpowers organiza o desenvolvimento em cinco fases sequenciais. Cada fase tem um artefato de saída que serve de input para a próxima. Pular fases não economiza tempo — apenas adia o custo de retrabalho para um momento em que o retrabalho é mais caro.</p>
+
+    <div class="space-y-3 mb-5">
+      <div class="flex items-start space-x-4 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+        <div>
+          <p class="font-semibold text-neutral-100">Brainstorm</p>
+          <p class="text-neutral-400 text-sm">Conversa socrática → spec document aprovado</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+        <div>
+          <p class="font-semibold text-neutral-100">Plan</p>
+          <p class="text-neutral-400 text-sm">Spec → plano de tarefas de 2-5 min com verificação</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+        <div>
+          <p class="font-semibold text-neutral-100">TDD</p>
+          <p class="text-neutral-400 text-sm">Red → Green → Refactor → commit por ciclo</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-8 h-8 rounded-full bg-yellow-500/20 text-yellow-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+        <div>
+          <p class="font-semibold text-neutral-100">Review</p>
+          <p class="text-neutral-400 text-sm">Revisão em 2 estágios: spec + qualidade</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+        <div>
+          <p class="font-semibold text-neutral-100">Merge</p>
+          <p class="text-neutral-400 text-sm">Branch finalizada, PR aberto ou merge direto</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 text-sm font-semibold">Princípio fundamental</p>
+      <p class="text-neutral-300 text-sm mt-1">Cada fase valida a anterior. Você não começa o TDD sem plano aprovado. Você não faz review sem testes passando. O fluxo é uma sequência com gates, não uma sugestão.</p>
+    </div>
+  </section>
+
+  <!-- TÓPICO 6 -->
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🚀 Primeiros passos: verificando que funciona</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Depois de instalar o Superpowers, vale 5 minutos para verificar que tudo está funcionando corretamente antes de depender das skills em um projeto real. Uma instalação silenciosamente incorreta é pior do que uma instalação visivelmente quebrada.</p>
+
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Smoke test básico</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-3">
+          <span class="text-emerald-400 font-bold flex-shrink-0">1.</span>
+          <span>Abra uma nova sessão no seu harness</span>
+        </li>
+        <li class="flex items-start space-x-3">
+          <span class="text-emerald-400 font-bold flex-shrink-0">2.</span>
+          <span>Digite: <code class="bg-dark-600 px-1 rounded text-xs">quais skills estão disponíveis?</code></span>
+        </li>
+        <li class="flex items-start space-x-3">
+          <span class="text-emerald-400 font-bold flex-shrink-0">3.</span>
+          <span>O agente deve listar as skills instaladas (brainstorming, writing-plans, tdd...)</span>
+        </li>
+        <li class="flex items-start space-x-3">
+          <span class="text-emerald-400 font-bold flex-shrink-0">4.</span>
+          <span>Teste um gatilho: <code class="bg-dark-600 px-1 rounded text-xs">quero fazer um brainstorming</code></span>
+        </li>
+        <li class="flex items-start space-x-3">
+          <span class="text-emerald-400 font-bold flex-shrink-0">5.</span>
+          <span>O agente deve ativar a skill de brainstorming e iniciar o processo socrático</span>
+        </li>
+      </ol>
+    </div>
+
+    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+      <p class="text-red-400 font-semibold text-sm">Se não funcionar</p>
+      <p class="text-neutral-300 text-sm mt-1">Verifique se os arquivos SKILL.md estão no diretório correto para seu harness. Para Claude Code: <code class="bg-dark-700 px-1 rounded">~/.claude/commands/</code>. Execute o sync.sh novamente e reinicie a sessão.</p>
+    </div>
+  </section>
+
+  <!-- RESUMO -->
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.1</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Identifiquei o anti-padrão "só escreve o código" e seu custo real</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendi o que são skills e como elas moldam o comportamento do agente</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Instalei e configurei o Superpowers na minha plataforma</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Compreendi como hooks funcionam e quando usá-los</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Conheço o fluxo completo brainstorm→plan→TDD→review→merge</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Verifiquei que a instalação está funcionando com o smoke test</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.2 — Brainstorming antes do código</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-2.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm">
+      <span class="text-yellow-400">⚡</span>
+      <span>Superpowers — Módulo 1.1</span>
+    </div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+
+<script>
+const themeToggle = document.getElementById('theme-toggle');
+const darkIcon = document.getElementById('theme-toggle-dark-icon');
+const lightIcon = document.getElementById('theme-toggle-light-icon');
+const html = document.documentElement;
+if (localStorage.getItem('theme') === 'light') {
+  darkIcon.classList.remove('hidden');
+  html.classList.remove('dark');
+} else {
+  lightIcon.classList.remove('hidden');
+}
+themeToggle.addEventListener('click', () => {
+  darkIcon.classList.toggle('hidden');
+  lightIcon.classList.toggle('hidden');
+  html.classList.toggle('dark');
+  localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.9 — Agentes Paralelos | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.9</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.9</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">⚡ Agentes paralelos</h1>
+  <p class="text-neutral-400 text-lg mb-6">Multiplique a velocidade do desenvolvimento dividindo trabalho independente entre múltiplos agentes.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~20 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">🔀 dispatching-parallel-agents: quando dividir</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A skill dispatching-parallel-agents fornece os critérios para decidir quando vale paralelizar. A decisão não é sempre "paralelizar tudo" — há overhead de coordenação que precisa ser justificado pelo ganho de velocidade.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Critérios para paralelizar</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>As tarefas são independentes — A não precisa do resultado de B</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada tarefa leva pelo menos 15-20 minutos para completar</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Os contratos de interface entre as partes estão definidos</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada tarefa pode ser testada independentemente</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <h3 class="text-neutral-300 font-semibold mb-2 text-sm">O ponto de break-even</h3>
+      <p class="text-neutral-400 text-sm">Se cada tarefa leva 5 minutos, o overhead de coordenação (criar worktrees, definir contratos, integrar resultados) pode levar 10 minutos — perdendo o benefício. Paralelismo compensa para tarefas de 20+ minutos.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">🤝 Coordenação sem conflito entre agentes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A coordenação entre agentes paralelos é responsabilidade do agente coordenador (ou de você, se não houver um). Sem coordenação explícita, dois agentes podem modificar o mesmo arquivo, criar funções duplicadas ou fazer suposições incompatíveis sobre o estado do sistema.</p>
+    <div class="space-y-3 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-1 text-sm">Partição por arquivo</h3>
+        <p class="text-neutral-400 text-sm">Agente A modifica apenas <code class="bg-dark-600 px-1 rounded">src/api/</code>, Agente B modifica apenas <code class="bg-dark-600 px-1 rounded">src/ui/</code>. Sem sobreposição de arquivos, sem conflito possível.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-blue-400 font-semibold mb-1 text-sm">Partição por funcionalidade</h3>
+        <p class="text-neutral-400 text-sm">Agente A implementa autenticação, Agente B implementa autorização. A fronteira é o contrato de interface: o que cada função expõe e espera.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-yellow-400 font-semibold mb-1 text-sm">Worktrees como lock implícito</h3>
+        <p class="text-neutral-400 text-sm">Cada agente em sua própria worktree não pode afetar os arquivos do outro. O lock é físico — diretórios separados — não lógico.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">📐 Definindo contratos de interface antes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O pré-requisito do paralelismo é a definição dos contratos de interface — antes de despachar qualquer agente. Os contratos especificam exatamente o que cada parte expõe para as outras, permitindo implementações independentes que se encaixam na integração.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">O que um contrato deve definir</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span>Assinatura de funções/métodos compartilhados (tipos de input e output)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span>Formato de dados trocados (esquema JSON, tipos TypeScript)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span>Comportamento em erros (o que cada parte faz quando a outra falha)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span>Estado compartilhado e quem é o dono de cada parte</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <h3 class="text-neutral-300 font-semibold mb-2 text-sm">Exemplo de contrato mínimo</h3>
+      <pre class="text-neutral-300 text-xs font-mono overflow-x-auto"><code>// Contrato: módulo de autenticação
+interface AuthService {
+  login(email: string, password: string): Promise&lt;AuthToken&gt;
+  logout(token: string): Promise&lt;void&gt;
+  verify(token: string): Promise&lt;User | null&gt;
+}</code></pre>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🔗 Integrando resultados de agentes paralelos</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A integração é a fase mais crítica do paralelismo. É onde partes que funcionam individualmente precisam funcionar juntas. O processo tem etapas definidas que capturam incompatibilidades antes que se tornem bugs em produção.</p>
+    <div class="space-y-3 mb-5">
+      <div class="flex items-start space-x-3 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Coletar resultados</strong> — cada agente commita na sua worktree e reporta o que implementou</p></div>
+      </div>
+      <div class="flex items-start space-x-3 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Verificar contratos</strong> — confirmar que cada parte implementou o contrato exatamente como definido</p></div>
+      </div>
+      <div class="flex items-start space-x-3 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Merge sequencial</strong> — integrar uma branch por vez, rodando testes após cada merge</p></div>
+      </div>
+      <div class="flex items-start space-x-3 bg-dark-700/50 rounded-lg p-4">
+        <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Teste de integração</strong> — executar testes que exercitam a interação entre as partes</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">🚧 Limites do paralelismo: quando não dividir</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O entusiasmo com paralelismo leva ao erro oposto: paralelizar tudo, incluindo tarefas que se beneficiam da execução sequencial. Reconhecer esses casos evita complexidade desnecessária.</p>
+    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-red-400 font-semibold mb-3">Quando NÃO paralelizar</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Dependência sequencial forte:</strong> B não pode começar sem o resultado de A</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Contexto compartilhado essencial:</strong> ambas as partes precisam entender o estado completo</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Tarefas muito pequenas:</strong> overhead de coordenação maior que o trabalho em si</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Contratos indefinidos:</strong> sem interface clara, paralelismo cria incompatibilidades</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><strong>Feature exploratória:</strong> quando você não sabe ainda o que está construindo</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">Paralelismo é uma otimização para execução, não para exploração. Use sequencialmente até entender bem o problema, então paralelize a implementação.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: feature dividida e paralelizada</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Exercício completo: tomar uma feature de médio porte, dividi-la em partes independentes, definir contratos, criar worktrees para cada parte e integrar os resultados.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Escolha uma feature com pelo menos 2 partes independentes</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Defina os contratos de interface entre as partes (tipos, APIs)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Crie uma worktree por parte e despache um agente em cada uma</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Monitore os relatórios dos agentes conforme trabalham</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Verifique conformidade com os contratos antes de integrar</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Integre sequencialmente, testando após cada merge</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">Feature integrada com sucesso, todos os testes passando, contrato respeitado pelas duas partes. Você usou paralelismo de forma estruturada e verificável.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.9</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei quando paralelizar e quando não paralelizar</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Coordeno agentes paralelos sem conflito via partição de trabalho</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Defino contratos de interface antes de despachar agentes</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Integro resultados de forma estruturada: coleta → verificação → merge → teste</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Reconheço os 5 cenários onde paralelismo não deve ser usado</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Completei o exercício de feature dividida e paralelizada</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.10 — Criando suas próprias Skills</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-10.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.9</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>

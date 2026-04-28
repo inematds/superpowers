@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.5 — Execução com Subagentes | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.5</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.5</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">🤖 Execução: subagentes e planos</h1>
+  <p class="text-neutral-400 text-lg mb-6">Deixe o agente trabalhar por horas autonomamente sem desviar do plano — com subagentes e revisão em dois estágios.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~35 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">📦 executing-plans: lotes com checkpoints humanos</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A skill executing-plans organiza a execução do plano em lotes de tarefas — tipicamente 3-5 tarefas por lote. Após cada lote, o agente para e apresenta um resumo do que foi feito, o que verificou e o que planeja fazer no próximo lote. Você aprova antes de continuar.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Estrutura de um lote</h3>
+      <div class="space-y-2 text-neutral-300 text-sm">
+        <div class="bg-dark-700/50 rounded p-2"><strong>Lote 1 (tarefas 1-3):</strong> Estrutura base do projeto</div>
+        <div class="text-center text-neutral-500 text-xs">↓ checkpoint: você revisa e aprova</div>
+        <div class="bg-dark-700/50 rounded p-2"><strong>Lote 2 (tarefas 4-6):</strong> Lógica de negócio</div>
+        <div class="text-center text-neutral-500 text-xs">↓ checkpoint: você revisa e aprova</div>
+        <div class="bg-dark-700/50 rounded p-2"><strong>Lote 3 (tarefas 7-9):</strong> Integração e testes</div>
+      </div>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">O tamanho do lote é configurável. Lotes menores = mais controle, mais interrupções. Lotes maiores = menos controle, mais autonomia. O padrão de 3-5 tarefas equilibra os dois.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">🚀 subagent-driven-development: um agente por tarefa</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">No subagent-driven-development, cada tarefa do plano é delegada a um subagente com contexto isolado. O agente coordenador mantém o estado do plano e despacha cada tarefa para um subagente fresco, que executa e reporta o resultado sem acumular contexto de tarefas anteriores.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-neutral-300 font-semibold mb-2 text-sm">Agente coordenador</h3>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• Mantém o plano completo</li>
+          <li>• Decide qual tarefa vai para qual subagente</li>
+          <li>• Verifica o resultado de cada subagente</li>
+          <li>• Atualiza o estado do plano</li>
+        </ul>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-neutral-300 font-semibold mb-2 text-sm">Subagente por tarefa</h3>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• Recebe apenas a tarefa atual</li>
+          <li>• Contexto limpo, sem acúmulo</li>
+          <li>• Executa e reporta resultado</li>
+          <li>• Encerrado após a tarefa</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+      <p class="text-blue-400 font-semibold text-sm">Vantagem do contexto isolado</p>
+      <p class="text-neutral-300 text-sm mt-1">Um agente com contexto longo começa a "esquecer" instruções iniciais e a misturar informações de diferentes tarefas. Subagentes frescos mantêm foco e não acumulam confusão.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">🔍 Revisão em 2 estágios: spec e qualidade</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A revisão em dois estágios separa critérios que, se misturados, criam confusão. No primeiro estágio, o revisor verifica conformidade com a spec — se o comportamento implementado corresponde ao que foi especificado. No segundo, verifica qualidade técnica — código limpo, sem smells, com boas práticas.</p>
+    <div class="space-y-4 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-5">
+        <h3 class="text-emerald-400 font-semibold mb-2">Estágio 1: Conformidade com spec</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Todos os critérios de aceitação implementados?</li>
+          <li>• Casos de borda cobertos?</li>
+          <li>• Comportamento em erros definido na spec?</li>
+          <li>• Nada fora do escopo adicionado?</li>
+        </ul>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-5">
+        <h3 class="text-blue-400 font-semibold mb-2">Estágio 2: Qualidade técnica</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Código legível e bem nomeado?</li>
+          <li>• Sem duplicação desnecessária?</li>
+          <li>• Testes cobrem casos relevantes?</li>
+          <li>• Performance adequada para o contexto?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 font-semibold text-sm">Por que separar os dois estágios</p>
+      <p class="text-neutral-300 text-sm mt-1">Um código pode ser tecnicamente excelente mas não cumprir a spec — e deve ser rejeitado. Um código pode cumprir a spec mas ser de qualidade ruim — e deve ser refatorado antes do merge. Critérios diferentes, prioridades diferentes.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🧭 Quando usar executing-plans vs. subagents</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Não existe uma resposta universal — a escolha depende do tipo de plano e do nível de autonomia desejado. Entender os trade-offs permite escolher o modo certo para cada situação.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-2 text-sm">Use executing-plans quando:</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Tarefas têm dependência sequencial forte</li>
+          <li>• Você quer revisar após cada lote</li>
+          <li>• O plano muda conforme você avança</li>
+          <li>• Feature crítica ou de alto risco</li>
+        </ul>
+      </div>
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+        <h3 class="text-blue-400 font-semibold mb-2 text-sm">Use subagents quando:</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Tarefas são independentes entre si</li>
+          <li>• Você quer máxima velocidade</li>
+          <li>• O plano está bem definido e estável</li>
+          <li>• Feature de baixo risco e bem testada</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">Para projetos novos, comece com executing-plans até ganhar confiança no plano e no processo. Subagents são mais eficientes mas requerem planos mais maduros.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">👁️ Monitorando e corrigindo subagentes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Subagentes trabalham autonomamente, mas isso não significa que devem ser ignorados. Monitoramento ativo permite detectar desvios cedo e intervir sem perder o contexto do plano maior. Os sinais de desvio são específicos e reconhecíveis.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Sinais de que um subagente está desviando</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Relatório com "implementei algo similar ao que foi pedido"</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Menção de arquivos que não estavam no plano original</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Tempo de execução muito maior que o esperado (2-5 min)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">⚠</span><span>Resultado que não inclui o critério de verificação passando</span></li>
+      </ul>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Como intervir sem perder contexto</p>
+      <p class="text-neutral-300 text-sm mt-1">Quando intervir, forneça o estado atual do plano (tarefa X de Y), o que foi feito até aqui e o que a tarefa específica deve entregar. O agente coordenador mantém esse estado e pode passá-lo para o subagente substituto.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: plano completo com subagentes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Use o plano aprovado do módulo anterior e execute-o com subagentes. O objetivo é ver o modo de execução mais poderoso do Superpowers em ação, com revisão em dois estágios ao final.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Passe o plano aprovado para o agente coordenador</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Instrua: <em>"Execute com subagents, uma tarefa por vez, reportando ao final de cada uma"</em></span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Monitore os relatórios de cada subagente — verifique os sinais de desvio</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Ao final, execute a revisão estágio 1: conformidade com spec</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Execute a revisão estágio 2: qualidade técnica</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Corrija issues bloqueadoras antes de avançar para o Módulo 1.6</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">Plano executado via subagentes, revisão em dois estágios concluída, issues bloqueadoras resolvidas. O código está pronto para entrar no módulo de debugging (se houver bugs) ou revisão final.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.5</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendi como executing-plans organiza lotes com checkpoints</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Compreendi o padrão subagent-driven-development</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei fazer revisão em 2 estágios: spec e qualidade</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Conheço o critério para escolher entre os dois modos</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei monitorar subagentes e identificar sinais de desvio</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Executei o plano completo com subagentes e revisão</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.6 — Debugging sistemático</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-6.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.5</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>

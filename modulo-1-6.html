@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.6 — Debugging Sistemático | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.6</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.6</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">🐛 Debugging sistemático</h1>
+  <p class="text-neutral-400 text-lg mb-6">Pare de atirar no escuro. O processo de 4 fases que transforma debugging de adivinhação em investigação.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~30 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">🔬 As 4 fases de causa raiz</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Debugging sistemático não é mais rápido que debugging aleatório em cada bug individual — mas é dramaticamente mais rápido em média, porque elimina as tentativas que não funcionam antes de tentar. O processo de 4 fases aplica o método científico ao diagnóstico de bugs.</p>
+    <div class="space-y-3 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-3 mb-2"><span class="w-7 h-7 rounded-full bg-red-500/20 text-red-400 text-sm font-bold flex items-center justify-center">1</span><h3 class="font-semibold">Observar o sintoma</h3></div>
+        <p class="text-neutral-400 text-sm ml-10">Documentar exatamente o que está acontecendo: mensagem de erro completa, stack trace, condições de reprodução, frequência.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-3 mb-2"><span class="w-7 h-7 rounded-full bg-yellow-500/20 text-yellow-400 text-sm font-bold flex items-center justify-center">2</span><h3 class="font-semibold">Formular hipóteses</h3></div>
+        <p class="text-neutral-400 text-sm ml-10">Listar 3-5 possíveis causas, em ordem de probabilidade. Não começar a testar ainda — primeiro pensar.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-3 mb-2"><span class="w-7 h-7 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center">3</span><h3 class="font-semibold">Testar hipóteses</h3></div>
+        <p class="text-neutral-400 text-sm ml-10">Para cada hipótese, criar um teste mínimo que a confirme ou descarte. Testar uma hipótese por vez, registrando o resultado.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-3 mb-2"><span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">4</span><h3 class="font-semibold">Identificar causa raiz</h3></div>
+        <p class="text-neutral-400 text-sm ml-10">A hipótese confirmada é a causa raiz. Corrigir especificamente essa causa, não o sintoma. Verificar com evidência.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">⏳ Condition-based waiting: não dormir, esperar condição</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Um dos bugs mais insidiosos em sistemas assíncronos é o race condition causado por sleep fixo. O agente usa sleep porque parece simples, mas sleep não garante que a condição que você está esperando realmente se cumpriu — apenas que passou tempo suficiente para que provavelmente tenha se cumprido.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-2 text-sm">Ruim: sleep fixo</h3>
+        <pre class="text-neutral-300 text-xs bg-dark-700 p-2 rounded overflow-x-auto"><code>await startServer();
+await sleep(2000); // esperamos 2s
+const res = await fetch('/health');
+// falha se servidor demorou 2.1s</code></pre>
+      </div>
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-2 text-sm">Bom: condition-based</h3>
+        <pre class="text-neutral-300 text-xs bg-dark-700 p-2 rounded overflow-x-auto"><code>await startServer();
+await waitUntil(
+  () => fetch('/health').then(r => r.ok),
+  { timeout: 10000, interval: 100 }
+);
+// só continua quando o servidor responder</code></pre>
+      </div>
+    </div>
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 font-semibold text-sm">Instrua o agente explicitamente</p>
+      <p class="text-neutral-300 text-sm mt-1">Agentes usam sleep por padrão porque está no treinamento deles. Instrua: "Nunca use sleep fixo para sincronização. Use polling de condição com timeout e intervalo configurável."</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">✅ verification-before-completion: evidência real</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Um dos problemas mais frustrantes com agentes é que eles frequentemente declaram "bug corrigido" antes de verificar se a correção realmente funciona. A skill debugging instrui o agente a exigir evidência verificável antes de qualquer declaração de sucesso.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">O que conta como evidência real</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Output de <code class="bg-dark-700 px-1 rounded">npm test</code> mostrando que os testes passam</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Log do servidor mostrando a requisição sendo processada corretamente</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Saída do curl/fetch com o status code e body esperados</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Screenshot do comportamento visual funcionando</span></li>
+      </ul>
+    </div>
+    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+      <p class="text-red-400 font-semibold text-sm">O que NÃO é evidência</p>
+      <ul class="space-y-1 text-neutral-400 text-sm mt-1">
+        <li>• "Fiz a correção, deve funcionar agora"</li>
+        <li>• "A lógica parece correta"</li>
+        <li>• "O código compila sem erros"</li>
+        <li>• "Não vejo mais o erro no código"</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🧵 Root cause tracing: técnicas avançadas</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Para bugs em sistemas complexos, as 4 fases básicas não são suficientes. Técnicas avançadas de rastreamento permitem encontrar origens não intuitivas, como bugs que surgem da interação de dois sistemas corretos individualmente.</p>
+    <div class="space-y-4">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-neutral-300 font-semibold mb-1 text-sm">Git bisect</h3>
+        <p class="text-neutral-400 text-sm">Quando o bug existe na versão atual mas não em um commit anterior, git bisect faz busca binária automática no histórico de commits para encontrar exatamente quando o bug foi introduzido.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-neutral-300 font-semibold mb-1 text-sm">Reprodução mínima</h3>
+        <p class="text-neutral-400 text-sm">Criar a versão mais simples possível do sistema que ainda reproduz o bug. Cada componente removido que mantém o bug é uma hipótese eliminada.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-neutral-300 font-semibold mb-1 text-sm">Log estruturado</h3>
+        <p class="text-neutral-400 text-sm">Adicionar logs com contexto (timestamp, request ID, user ID, estado relevante) em pontos estratégicos para criar uma trilha rastreável do fluxo de execução.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-neutral-300 font-semibold mb-1 text-sm">Isolamento de variável</h3>
+        <p class="text-neutral-400 text-sm">Mudar uma variável de cada vez (input, ambiente, configuração, dados) para identificar qual combinação específica causa o bug.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">🛡️ Defense-in-depth: prevenindo regressão</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Corrigir um bug sem adicionar proteção contra regressão é incompleto. A regressão ocorre quando uma correção é desfeita por uma mudança futura — seja por outro agente, por refatoração ou por nova feature. Defense-in-depth cria múltiplas camadas que protegem a correção.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">As camadas de proteção</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold w-4">1.</span><span><strong>Teste de regressão</strong> — um teste que falha se o bug voltar</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold w-4">2.</span><span><strong>Assertion defensiva</strong> — validação no código que lança erro se a condição inválida ocorrer</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold w-4">3.</span><span><strong>Comentário explicativo</strong> — "Este código existe porque X causa Y. Não remover sem testar Z."</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold w-4">4.</span><span><strong>Validação de input</strong> — rejeitar na entrada o que causou o bug, não apenas no ponto de falha</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">Bugs que voltam são os mais frustrantes de debugar porque parecem resolvidos. Defense-in-depth garante que se o bug tentar voltar, ele seja detectado antes de chegar à produção.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: diagnosticar um bug sem atirar no escuro</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Se o código do módulo anterior tem bugs, use-os como exercício. Se não tem, introduza um bug propositalmente para praticar. O objetivo não é a velocidade — é executar o processo de 4 fases sem pular etapas.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Documente o sintoma completamente: erro, stack trace, condições de reprodução</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Liste 3 hipóteses de causa raiz antes de executar qualquer código</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Teste cada hipótese com um mini-teste isolado</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Identifique a causa raiz e corrija especificamente ela</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Colete evidência real de que a correção funcionou</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Adicione teste de regressão e protection layer</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">Bug corrigido com evidência real, teste de regressão adicionado, e um comentário explicando por que a correção existe. O processo foi seguido sem pular etapas.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.6</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Domino o processo de 4 fases: sintoma → hipótese → teste → causa raiz</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Substituo sleep fixo por condition-based waiting</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Exijo evidência real antes de declarar bug corrigido</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Conheço técnicas avançadas: bisect, reprodução mínima, log estruturado</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Adiciono defense-in-depth para prevenir regressões</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Completei o exercício de debugging sem atirar no escuro</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.7 — Revisão de código com agentes</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-7.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.6</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>

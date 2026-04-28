@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.8 — Git Worktrees | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.8</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.8</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">🌿 Git Worktrees e branches paralelos</h1>
+  <p class="text-neutral-400 text-lg mb-6">Trabalhe em múltiplas features simultaneamente sem conflito, com workspaces isolados criados automaticamente.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~25 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">🔒 Por que worktrees isoladas protegem o trabalho</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Worktrees permitem ter múltiplos checkouts do mesmo repositório em diretórios separados, cada um com seu próprio branch, estado de working directory e staging area. Enquanto um agente trabalha na feature A, outro pode trabalhar na feature B — no mesmo repositório, sem interferência.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-2 text-sm">Sem worktrees</h3>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• Stash mudanças antes de trocar branch</li>
+          <li>• Contexto perdido ao trocar de tarefa</li>
+          <li>• Risco de commitar na branch errada</li>
+          <li>• Un agente por vez no repositório</li>
+        </ul>
+      </div>
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-2 text-sm">Com worktrees</h3>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• Cada feature tem seu diretório</li>
+          <li>• Sem stash, sem perda de contexto</li>
+          <li>• Impossível commitar na branch errada</li>
+          <li>• Múltiplos agentes em paralelo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">Worktrees são um recurso nativo do git — não uma ferramenta externa. O Superpowers apenas automatiza sua criação e configuração via a skill using-git-worktrees.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">⚙️ Setup automático com using-git-worktrees</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A skill using-git-worktrees instrui o agente a criar worktrees com os parâmetros corretos, seguindo a convenção de nomenclatura do projeto. Você apenas especifica o nome da feature e o agente cria o diretório, o branch e configura tudo automaticamente.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-2">Comandos gerados automaticamente</h3>
+      <pre class="text-neutral-300 text-sm font-mono overflow-x-auto"><code># Para a feature "auth-oauth"
+git worktree add ../projeto-auth-oauth -b feature/auth-oauth
+
+# Resultado:
+# ../projeto-auth-oauth/  ← novo diretório
+# branch: feature/auth-oauth ← branch nova
+# mesmo repositório remoto</code></pre>
+    </div>
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+      <p class="text-blue-400 font-semibold text-sm">Convenção de nomenclatura</p>
+      <p class="text-neutral-300 text-sm mt-1">Por padrão: diretório irmão com sufixo da feature (<code class="bg-dark-700 px-1 rounded">../projeto-nome-feature</code>). A skill detecta o nome do projeto atual e mantém consistência.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">🏁 finishing-a-development-branch: merge, PR ou descarte</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Após implementar uma feature na worktree, é hora de decidir o destino da branch. A skill finishing-a-development-branch guia esse processo com critérios claros para cada decisão — e inclui a limpeza da worktree ao final.</p>
+    <div class="space-y-3 mb-5">
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-1 text-sm">Merge direto</h3>
+        <p class="text-neutral-400 text-sm">Quando: feature pequena, testada, sem necessidade de review externo. Faça rebase para manter histórico limpo, então merge.</p>
+      </div>
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+        <h3 class="text-blue-400 font-semibold mb-1 text-sm">Abrir PR</h3>
+        <p class="text-neutral-400 text-sm">Quando: feature maior, precisa de review de equipe, ou é uma contribuição para repositório compartilhado. Push e abertura de PR com descrição completa.</p>
+      </div>
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-1 text-sm">Descarte</h3>
+        <p class="text-neutral-400 text-sm">Quando: a abordagem não funcionou ou a feature foi cancelada. Remove a worktree e a branch sem merge.</p>
+      </div>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm font-mono text-sm">git worktree remove ../projeto-auth-oauth<br>git branch -d feature/auth-oauth</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🌐 Múltiplas worktrees simultâneas</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Com múltiplas worktrees abertas, você pode ter um agente em cada uma — trabalhando em features diferentes do mesmo repositório ao mesmo tempo. Este é o modo de máxima velocidade do Superpowers: throughput multiplicado pelo número de agentes.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Exemplo: 3 worktrees ativas</h3>
+      <div class="space-y-2 text-neutral-300 text-sm font-mono">
+        <p class="text-neutral-500"># Agente 1 — feature de autenticação</p>
+        <p>~/projetos/meuapp-auth-oauth/</p>
+        <p class="text-neutral-500"># Agente 2 — dashboard de métricas</p>
+        <p>~/projetos/meuapp-dashboard-metrics/</p>
+        <p class="text-neutral-500"># Agente 3 — correção de bug crítico</p>
+        <p>~/projetos/meuapp-fix-login-timeout/</p>
+      </div>
+    </div>
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 font-semibold text-sm">Limite prático</p>
+      <p class="text-neutral-300 text-sm mt-1">3-5 worktrees simultâneas é o sweet spot para a maioria dos projetos. Acima disso, o overhead de coordenação (monitorar múltiplos agentes) tende a superar o ganho de velocidade.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">⚔️ Resolução de conflitos ao integrar branches</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Quando múltiplas features tocam nos mesmos arquivos, conflitos de merge são inevitáveis. A chave é distinguir conflitos sintáticos (que o git detecta) de conflitos semânticos (que o git não detecta mas que quebram o comportamento).</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-yellow-400 font-semibold mb-2 text-sm">Conflito sintático</h3>
+        <p class="text-neutral-400 text-sm">Git detecta e marca com &lt;&lt;&lt;. Resolva manualmente escolhendo a versão correta ou combinando as duas. Verifique os testes após resolver.</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-2 text-sm">Conflito semântico</h3>
+        <p class="text-neutral-400 text-sm">Git não detecta. Feature A muda comportamento de função X; Feature B usa função X com a suposição antiga. Testes de integração capturam isso.</p>
+      </div>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Protocolo pós-merge</p>
+      <p class="text-neutral-300 text-sm mt-1">Após qualquer merge com conflito: execute o suite de testes completo, não apenas os testes da feature. Conflitos semânticos aparecem em testes de integração, não nos testes unitários da feature.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: fluxo completo branch ao merge</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Exercício completo do fluxo de worktree: criar a worktree, implementar uma feature simples, resolver um conflito simulado e finalizar com merge ou PR.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Crie uma worktree: <code class="bg-dark-600 px-1 rounded">git worktree add ../meuapp-pratica -b feature/pratica</code></span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Na worktree, implemente uma mudança pequena com testes</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>No repositório principal, faça uma mudança no mesmo arquivo (simula conflito)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Tente fazer merge da feature branch — resolva o conflito</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Execute os testes completos para detectar conflitos semânticos</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Limpe a worktree após o merge bem-sucedido</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">Feature mergeada com sucesso, conflito resolvido corretamente, testes completos passando, worktree limpa. Você domina o fluxo de worktree do início ao fim.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.8</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendi como worktrees isolam features e protegem o trabalho</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei criar e configurar worktrees automaticamente com a skill</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Conheço os critérios para merge, PR ou descarte de branch</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei gerenciar múltiplas worktrees simultâneas com limite prático</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Distingo e resolvo conflitos sintáticos e semânticos</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Completei o fluxo completo de worktree: criação → feature → merge → limpeza</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.9 — Agentes paralelos</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-9.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.8</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>

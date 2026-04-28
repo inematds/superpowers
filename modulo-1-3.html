@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.3 — Planejamento | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.3</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.3</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">📋 Planejamento real com writing-plans</h1>
+  <p class="text-neutral-400 text-lg mb-6">Crie planos de implementação tão detalhados que mantêm o agente no caminho por horas sem desviar.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~30 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">⚖️ Plano bom vs. plano genérico</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A diferença entre um plano que funciona e um que não funciona não é o tamanho — é a especificidade. Um plano genérico lista intenções. Um plano bom lista ações verificáveis com arquivos, código e critérios. O agente executa o que está escrito, não o que você quis dizer.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <p class="text-red-400 font-semibold mb-2 text-sm">Plano genérico (não funciona)</p>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• Criar componente de formulário</li>
+          <li>• Adicionar validação</li>
+          <li>• Conectar ao backend</li>
+          <li>• Testar</li>
+        </ul>
+      </div>
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <p class="text-emerald-400 font-semibold mb-2 text-sm">Plano bom (funciona)</p>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• Criar <code class="bg-dark-700 px-1 rounded text-xs">src/components/LoginForm.tsx</code></li>
+          <li>• Campos: email (required, format) + senha (min 8 chars)</li>
+          <li>• POST para <code class="bg-dark-700 px-1 rounded text-xs">/api/auth/login</code>, handle 401</li>
+          <li>• Verificar: <code class="bg-dark-700 px-1 rounded text-xs">npm test LoginForm</code> passa</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+      <p class="text-blue-400 font-semibold text-sm">O teste do plano bom</p>
+      <p class="text-neutral-300 text-sm mt-1">Mostre o plano para alguém que não conhece o projeto. Se essa pessoa consegue executar cada tarefa sem fazer uma única pergunta, o plano é bom. Se precisar perguntar qualquer coisa, o plano é incompleto.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">⏱️ Tarefas de 2-5 minutos: por quê esse tamanho?</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O tamanho de 2-5 minutos por tarefa não é arbitrário. É calibrado para ser pequeno o suficiente para commitar frequentemente, mas grande o suficiente para ter resultado verificável. Tarefas maiores criam contexto longo e perda de foco. Tarefas menores criam overhead excessivo de commit.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Por que esse tamanho específico</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>2-5 min = uma função ou um teste</strong> — unidade atômica de código</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>Commit a cada tarefa</strong> — histórico granular, rollback fácil</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>Verificação imediata</strong> — você sabe em 5 min se funcionou</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>Erro precoce</strong> — bugs surgem na tarefa 3, não na 30</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-5">
+      <h3 class="text-neutral-300 font-semibold mb-2">Exemplos de tarefas bem dimensionadas</h3>
+      <ul class="space-y-1 text-neutral-400 text-sm">
+        <li>✓ Criar a função <code class="bg-dark-600 px-1 rounded">validateEmail()</code> com testes unitários</li>
+        <li>✓ Adicionar campo <code class="bg-dark-600 px-1 rounded">createdAt</code> ao modelo User e migração</li>
+        <li>✓ Implementar o endpoint POST /api/users com validação de input</li>
+        <li class="text-red-400">✗ "Implementar todo o sistema de autenticação" (muito grande)</li>
+        <li class="text-red-400">✗ "Adicionar import statement" (muito pequeno, não tem valor verificável)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">🗂️ Caminhos de arquivo, código completo e verificação</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Os três pilares de uma tarefa de plano são: o caminho exato do arquivo que será modificado, o trecho de código completo (não pseudocódigo) que deve ser escrito, e o comando ou critério que confirma que a tarefa está concluída.</p>
+    <div class="space-y-4 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-5">
+        <h3 class="text-emerald-400 font-semibold mb-2">Pilar 1: Caminho de arquivo</h3>
+        <p class="text-neutral-400 text-sm mb-2">Sempre absoluto ou relativo ao root do projeto. Sem ambiguidade.</p>
+        <code class="text-neutral-300 text-sm bg-dark-600 px-3 py-2 rounded block">src/lib/auth/validators.ts</code>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-5">
+        <h3 class="text-blue-400 font-semibold mb-2">Pilar 2: Código completo</h3>
+        <p class="text-neutral-400 text-sm mb-2">O trecho real, não "algo como..." ou pseudocódigo. O agente copia e adapta.</p>
+        <pre class="text-neutral-300 text-sm bg-dark-600 px-3 py-2 rounded overflow-x-auto"><code>export function validateEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}</code></pre>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-5">
+        <h3 class="text-yellow-400 font-semibold mb-2">Pilar 3: Critério de verificação</h3>
+        <p class="text-neutral-400 text-sm mb-2">O comando que deve passar ou o comportamento que deve ser observável.</p>
+        <code class="text-neutral-300 text-sm bg-dark-600 px-3 py-2 rounded block">npm test -- --testPathPattern=validators</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🔍 Auto-revisão inline do plano</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A skill writing-plans instrui o agente a, após gerar o plano completo, fazer uma revisão inline antes de apresentá-lo. Nessa revisão, o agente verifica se cada tarefa tem os três pilares, se a sequência é lógica, e se há dependências implícitas não declaradas.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Checklist da auto-revisão</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Toda tarefa tem caminho de arquivo?</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Toda tarefa tem código real (não pseudocódigo)?</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Toda tarefa tem critério de verificação?</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>A sequência respeita dependências (A deve existir antes de B)?</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Todos os critérios de aceitação da spec foram cobertos?</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Há alguma tarefa que pode ser dividida em partes menores?</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">Essa auto-revisão acontece antes de o agente apresentar o plano para você. É uma camada extra de qualidade que captura erros antes da sua revisão, economizando idas e vindas.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">🔄 Iterando o plano com feedback humano</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O plano não é aprovado na primeira versão — ele é iterado. Você revisa o plano, aponta o que está errado, incompleto ou mal ordenado, e o agente revisa e reapresenta. Esse ciclo continua até o plano estar pronto para execução. Corrigir agora custa segundos; corrigir depois custa horas.</p>
+    <div class="space-y-3 mb-5">
+      <div class="flex items-start space-x-3 bg-dark-700/50 rounded-lg p-4">
+        <span class="text-emerald-400 font-bold text-sm flex-shrink-0 w-6">V1</span>
+        <div><p class="text-neutral-300 text-sm">Agente apresenta plano inicial</p></div>
+      </div>
+      <div class="flex items-center justify-center text-neutral-600">↓</div>
+      <div class="flex items-start space-x-3 bg-dark-700/50 rounded-lg p-4">
+        <span class="text-blue-400 font-bold text-sm flex-shrink-0 w-6">R1</span>
+        <div><p class="text-neutral-300 text-sm">Você aponta: "Tarefa 3 depende da 5, inverta a ordem"</p></div>
+      </div>
+      <div class="flex items-center justify-center text-neutral-600">↓</div>
+      <div class="flex items-start space-x-3 bg-dark-700/50 rounded-lg p-4">
+        <span class="text-emerald-400 font-bold text-sm flex-shrink-0 w-6">V2</span>
+        <div><p class="text-neutral-300 text-sm">Agente revisa e reapresenta com mudanças destacadas</p></div>
+      </div>
+      <div class="flex items-center justify-center text-neutral-600">↓</div>
+      <div class="flex items-start space-x-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <span class="text-emerald-400 font-bold text-sm flex-shrink-0 w-6">✓</span>
+        <div><p class="text-neutral-300 text-sm">Plano aprovado — pronto para execução</p></div>
+      </div>
+    </div>
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 font-semibold text-sm">Número típico de iterações</p>
+      <p class="text-neutral-300 text-sm mt-1">Para features bem especificadas: 1-2 iterações. Para features complexas: 3-4. Se passar de 5 iterações, o problema provavelmente está na spec, não no plano.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: criar um plano para uma feature real</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Use a spec aprovada do módulo anterior como input. O objetivo é criar um plano de implementação com todos os três pilares em cada tarefa, passar pela auto-revisão do agente e iterar com seu feedback até aprovação.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Abra a spec do módulo anterior e passe para o agente</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Diga: <em>"Crie um plano de implementação detalhado com tarefas de 2-5 minutos"</em></span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Aguarde a auto-revisão e o plano final</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Verifique: todo tarefa tem os 3 pilares? A sequência é correta?</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Forneça feedback e itere até aprovação</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Salve o plano — ele será o input do Módulo 1.4</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">O plano está pronto quando você consegue ler cada tarefa e saber exatamente o que fazer, onde fazer e como verificar — sem consultar nenhum outro documento.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.3</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei distinguir plano bom de plano genérico</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendo por que tarefas de 2-5 minutos são a granularidade certa</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Conheço os três pilares de uma tarefa: arquivo, código, verificação</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendi como funciona a auto-revisão inline do agente</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Pratiquei o ciclo de iteração com feedback humano</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Tenho um plano aprovado pronto para execução</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.4 — TDD com agente: RED-GREEN-REFACTOR</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-4.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.3</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>

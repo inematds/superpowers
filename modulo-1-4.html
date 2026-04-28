@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.4 — TDD com Agente | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.4</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.4</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">🔴 TDD com agente: RED-GREEN-REFACTOR</h1>
+  <p class="text-neutral-400 text-lg mb-6">Force o ciclo vermelho-verde-refatorar com seu agente. Nunca mais código sem teste, nunca mais teste sem falha vista.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~35 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-red-500/20 text-red-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">🔴 Escrever o teste antes — e realmente vê-lo falhar</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A fase RED é obrigatória e frequentemente pulada. Um agente sem a skill TDD escreve o código e depois escreve testes que passam — mas nunca confirma se os testes teriam falhado sem o código. Isso cria uma falsa sensação de segurança: testes que sempre passam não testam nada.</p>
+    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-red-400 font-semibold mb-3">O problema do teste que nunca falhou</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Agente escreve código de produção primeiro</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Agente escreve teste que verifica o código existente</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Teste passa — mas o teste verifica o código, não o requisito</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Se o código tiver um bug, o teste pode ainda passar</span></li>
+      </ul>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">O protocolo RED correto</h3>
+      <ol class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">1.</span><span>Agente escreve APENAS o teste (sem código de produção)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">2.</span><span>Executa o teste: <strong>deve falhar</strong> — e pelo motivo certo</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">3.</span><span>Confirma que a mensagem de erro faz sentido para o requisito</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">4.</span><span>Só então escreve o código de produção mínimo para passar</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">📐 YAGNI e DRY na prática com agentes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Agentes de IA tendem à super-engenharia por padrão. Quando escrevem código, frequentemente adicionam abstrações "que podem ser úteis mais tarde", generalizam casos que ainda não existem e criam hierarquias de classes onde uma função seria suficiente. YAGNI e DRY são os freios necessários.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-yellow-400 font-semibold mb-2 text-sm">YAGNI em prática</h3>
+        <p class="text-neutral-400 text-xs mb-2">You Ain't Gonna Need It</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Código mínimo para o teste passar</li>
+          <li>• Sem abstrações para "casos futuros"</li>
+          <li>• Sem generalizações desnecessárias</li>
+          <li>• Próxima tarefa adiciona o que falta</li>
+        </ul>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <h3 class="text-blue-400 font-semibold mb-2 text-sm">DRY em prática</h3>
+        <p class="text-neutral-400 text-xs mb-2">Don't Repeat Yourself</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Extrair duplicação real, não antecipada</li>
+          <li>• Só abstrair depois de 3+ repetições</li>
+          <li>• Duplicação é ok até o REFACTOR</li>
+          <li>• Clareza > abstração prematura</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 font-semibold text-sm">Instrução para o agente</p>
+      <p class="text-neutral-300 text-sm mt-1">Quando o agente propuser abstrações que vão além do teste atual, peça explicitamente: "Escreva apenas o código necessário para este teste passar. Sem abstrações antecipadas."</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">⚠️ Antipadrões de teste com agentes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Agentes cometem erros específicos ao escrever testes que são difíceis de identificar sem experiência. Conhecer esses antipadrões permite corrigi-los antes que contaminem o conjunto de testes e criem uma falsa sensação de cobertura.</p>
+    <div class="space-y-4">
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-1 text-sm">Teste tautológico</h3>
+        <p class="text-neutral-400 text-sm">O teste verifica o que o código faz, não o que deveria fazer. Ex: <code class="bg-dark-700 px-1 rounded">expect(add(1,2)).toBe(add(1,2))</code>. Sempre passa, nunca falha, testa nada.</p>
+      </div>
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-1 text-sm">Mock excessivo</h3>
+        <p class="text-neutral-400 text-sm">Mockar tanto que o teste verifica apenas se o mock foi chamado, não se o comportamento real é correto. O teste passa mesmo se a lógica estiver completamente errada.</p>
+      </div>
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-1 text-sm">Teste de implementação</h3>
+        <p class="text-neutral-400 text-sm">Verificar detalhes de implementação (que variáveis existem, que métodos foram chamados internamente) em vez de comportamento observável. Quebra a qualquer refatoração.</p>
+      </div>
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-1 text-sm">Teste sem asserção significativa</h3>
+        <p class="text-neutral-400 text-sm"><code class="bg-dark-700 px-1 rounded">expect(true).toBe(true)</code> ao final de uma função que pode lançar exceção. Verifica apenas que não explodiu, não que produziu o resultado correto.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">💚 O ciclo de commit por RED-GREEN</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A disciplina de commitar ao final de cada ciclo RED-GREEN completo cria um histórico granular que serve como rede de segurança. Se algo quebrar na tarefa 7, você tem um ponto de retorno na tarefa 6 com todos os testes passando — sem precisar desfazer horas de trabalho.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Anatomia de um commit TDD</h3>
+      <div class="space-y-2 text-neutral-300 text-sm font-mono">
+        <p class="text-neutral-500"># Mensagem de commit por ciclo</p>
+        <p>test: add validateEmail() — RED</p>
+        <p>feat: implement validateEmail() — GREEN</p>
+        <p>refactor: extract regex to constant — REFACTOR</p>
+      </div>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-5">
+      <h3 class="text-neutral-300 font-semibold mb-2">O histórico que o TDD cria</h3>
+      <p class="text-neutral-400 text-sm">Com commits por ciclo, você pode ver exatamente quando cada comportamento foi adicionado, qual teste o motivou e qual refatoração aconteceu. É um histórico narrativo do desenvolvimento, não apenas uma lista de mudanças.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">♻️ Refatorar sem quebrar testes</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A fase REFACTOR só começa depois que todos os testes estão verdes. Nela, você melhora a estrutura do código — extrai funções, remove duplicação, melhora nomes — garantindo que nenhum teste quebre durante o processo. Cada passo de refatoração é imediatamente verificado.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-2 text-sm">O que refatorar</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Extrair funções com nomes claros</li>
+          <li>• Remover duplicação real</li>
+          <li>• Melhorar nomes de variáveis</li>
+          <li>• Simplificar condicionais complexas</li>
+          <li>• Aplicar DRY onde surgiu duplicação</li>
+        </ul>
+      </div>
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-2 text-sm">O que NÃO fazer no refactor</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Adicionar nova funcionalidade</li>
+          <li>• Mudar comportamento externo</li>
+          <li>• Fazer grandes mudanças estruturais</li>
+          <li>• Continuar se um teste quebrou</li>
+          <li>• Commitar com teste vermelho</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 font-semibold text-sm">Regra de ouro</p>
+      <p class="text-neutral-300 text-sm mt-1">Se um teste quebrou durante o refactor, desfaça o último passo imediatamente. Não tente consertar o teste — o refactor é que saiu do trilho. Volte ao verde antes de continuar.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: feature do zero em ciclo TDD completo</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Use o plano do módulo anterior. Para cada tarefa, execute o ciclo completo RED-GREEN-REFACTOR com o agente. O exercício termina quando todas as tarefas do plano foram implementadas com testes passando e commits por ciclo.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro de cada ciclo</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-red-400 font-bold flex-shrink-0">RED</span><span>Peça o teste da tarefa atual. Execute. Confirme que falha pelo motivo certo.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">GREEN</span><span>Peça o código mínimo. Execute os testes. Confirme que todos passam.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-400 font-bold flex-shrink-0">REFACTOR</span><span>Identifique o que melhorar. Refatore em pequenos passos, verificando testes a cada passo.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-400 font-bold flex-shrink-0">COMMIT</span><span>Commit com mensagem clara. Avance para a próxima tarefa.</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">Todas as tarefas do plano implementadas, todos os testes passando, histórico de commits com pelo menos um commit por ciclo. Sem código não coberto por teste.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.4</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendi por que o RED é obrigatório e como confirmar a falha correta</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei aplicar YAGNI e DRY para resistir à super-engenharia do agente</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Identifico os 4 antipadrões de teste mais comuns em agentes</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Pratico o ciclo de commit por RED-GREEN para histórico granular</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei fazer REFACTOR sem quebrar testes, em pequenos passos</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Completei o exercício com feature implementada em TDD completo</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.5 — Execução: subagentes e planos</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-5.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.4</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>

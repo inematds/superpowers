@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.2 — Brainstorming | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+          <span class="text-2xl">⚡</span>
+          <span class="font-bold text-lg hidden sm:inline">Superpowers</span>
+        </a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10">
+          <span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span>
+        </a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a>
+    <span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a>
+    <span>/</span>
+    <span class="text-emerald-400">Módulo 1.2</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.2</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">💡 Brainstorming antes do código</h1>
+  <p class="text-neutral-400 text-lg mb-6">Aprenda a extrair uma especificação real de uma conversa vaga e validá-la antes de escrever uma linha de código.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~30 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">🤔 Por que o agente pergunta antes de agir</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">A skill de brainstorming do Superpowers muda fundamentalmente o modo como o agente responde a pedidos vagos. Em vez de implementar o que parece razoável, o agente entra em modo socrático: faz perguntas direcionadas para revelar o que você realmente quer antes de escrever uma linha.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">O método socrático aplicado ao desenvolvimento</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>Pergunta de escopo:</strong> "Para qual contexto isso precisa funcionar?" revela se é MVP ou produção</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>Pergunta de constraints:</strong> "Há limitações técnicas que devo respeitar?" evita retrabalho de arquitetura</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>Pergunta de critério:</strong> "Como saberemos que está pronto?" define o critério de aceitação</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><strong>Pergunta de borda:</strong> "O que deve acontecer quando X falhar?" define tratamento de erros</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-5">
+      <h3 class="text-neutral-300 font-semibold mb-2">Por que isso economiza tempo</h3>
+      <p class="text-neutral-400 text-sm">Uma sessão de brainstorming de 20 minutos revela requisitos que, se descobertos durante a implementação, custam 2-4 horas de reescrita. O ROI é sempre positivo.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">📄 Extraindo uma spec de uma conversa vaga</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O processo de extrair uma spec começa com a ideia mais vaga possível e a refina através de perguntas até chegar a um documento estruturado. O agente não inventa requisitos — ele os descobre através de diálogo. Ao final, a spec reflete o que você realmente quer, não o que o agente imaginou.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <p class="text-neutral-400 text-xs font-semibold mb-2 uppercase tracking-wider">Entrada (ideia vaga)</p>
+        <p class="text-neutral-300 text-sm italic">"Quero um sistema para gerenciar tarefas da minha equipe"</p>
+      </div>
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <p class="text-emerald-400 text-xs font-semibold mb-2 uppercase tracking-wider">Saída (spec extraída)</p>
+        <p class="text-neutral-300 text-sm">Sistema Kanban para 5-10 usuários, persistência em PostgreSQL, autenticação por email, sem mobile por ora, drag-and-drop em cards</p>
+      </div>
+    </div>
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-5">
+      <h3 class="text-blue-400 font-semibold mb-2">As perguntas que revelam a spec</h3>
+      <ul class="space-y-1 text-neutral-300 text-sm">
+        <li>• Quantos usuários simultâneos?</li>
+        <li>• Precisamos de mobile ou só web?</li>
+        <li>• Qual banco de dados já está na infra?</li>
+        <li>• Tem integração com ferramentas existentes?</li>
+        <li>• Qual é o prazo e o que é MVP?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">✅ Validando o design em seções</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Após extrair a spec, o agente não a apresenta inteira de uma vez esperando aprovação global. Em vez disso, apresenta seção por seção e aguarda confirmação explícita antes de continuar. Isso garante que você realmente leu e compreendeu cada parte — não apenas clicou "aprovado" em um texto longo.</p>
+    <div class="space-y-3 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-2 mb-2"><span class="text-emerald-400 font-semibold text-sm">Seção 1: Objetivo</span><span class="text-xs text-neutral-500">→ aguarda aprovação</span></div>
+        <p class="text-neutral-400 text-sm">"Criar um Kanban board para gerenciamento de tarefas de equipes pequenas (5-10 pessoas). Confirma?"</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-2 mb-2"><span class="text-emerald-400 font-semibold text-sm">Seção 2: Stack técnica</span><span class="text-xs text-neutral-500">→ aguarda aprovação</span></div>
+        <p class="text-neutral-400 text-sm">"Next.js + PostgreSQL + Prisma. Auth via NextAuth com provider de email. Confirma?"</p>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-2 mb-2"><span class="text-emerald-400 font-semibold text-sm">Seção 3: Critérios de aceitação</span><span class="text-xs text-neutral-500">→ aguarda aprovação</span></div>
+        <p class="text-neutral-400 text-sm">"Criar/mover/deletar cards, drag-and-drop entre colunas, persistência imediata. Confirma?"</p>
+      </div>
+    </div>
+    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+      <p class="text-yellow-400 font-semibold text-sm">Por que seção por seção?</p>
+      <p class="text-neutral-300 text-sm mt-1">Spec documents completos têm 500-1000 palavras. Aprovação em bloco é ilusória. Seção por seção força leitura real e permite correções cirúrgicas.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🖥️ O servidor visual de brainstorming</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Durante o brainstorming, o agente pode iniciar um servidor local que renderiza a spec em tempo real numa interface HTML limpa. Em vez de revisar a spec no chat — onde o contexto se mistura com a conversa — você revisa num browser dedicado que se atualiza conforme o agente escreve.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Como ativar o servidor visual</h3>
+      <ol class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">1.</span><span>O agente inicia automaticamente quando entra em modo brainstorming</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">2.</span><span>Servidor sobe em <code class="bg-dark-700 px-1 rounded">localhost:3000</code> por padrão</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">3.</span><span>A spec é renderizada em Markdown com seções colapsáveis</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">4.</span><span>Atualizações aparecem sem recarregar a página (SSE)</span></li>
+      </ol>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-5">
+      <h3 class="text-neutral-300 font-semibold mb-2">Vantagem prática</h3>
+      <p class="text-neutral-400 text-sm">Com o servidor visual, você pode ter o chat à esquerda e a spec renderizada à direita. Cada aprovação de seção no chat se reflete imediatamente na visualização. A revisão fica muito mais natural e rápida.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">📋 Spec document: o que deve conter</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Uma spec bem escrita tem seções obrigatórias que cobrem todas as dimensões da feature: o que ela faz, como saberemos que está pronta, o que está fora do escopo e o que ainda está em aberto. Cada seção serve como critério de revisão em fases posteriores.</p>
+    <div class="grid grid-cols-1 gap-3 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-emerald-400 font-bold text-sm w-28 flex-shrink-0">Objetivo</span>
+        <span class="text-neutral-300 text-sm">O que a feature entrega e para quem. Uma frase clara.</span>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-emerald-400 font-bold text-sm w-28 flex-shrink-0">Contexto técnico</span>
+        <span class="text-neutral-300 text-sm">Stack existente, constraints de arquitetura, dependências.</span>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-emerald-400 font-bold text-sm w-28 flex-shrink-0">Critérios</span>
+        <span class="text-neutral-300 text-sm">Lista de comportamentos que devem funcionar. Cada item é testável.</span>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-emerald-400 font-bold text-sm w-28 flex-shrink-0">Casos de borda</span>
+        <span class="text-neutral-300 text-sm">O que acontece quando inputs são inválidos, vazios ou inesperados.</span>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-emerald-400 font-bold text-sm w-28 flex-shrink-0">Fora de escopo</span>
+        <span class="text-neutral-300 text-sm">O que explicitamente não será feito nesta iteração.</span>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-emerald-400 font-bold text-sm w-28 flex-shrink-0">Em aberto</span>
+        <span class="text-neutral-300 text-sm">Decisões que precisam ser tomadas antes da implementação.</span>
+      </div>
+    </div>
+    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+      <p class="text-red-400 font-semibold text-sm">Atenção: spec incompleta é quase tão ruim quanto sem spec</p>
+      <p class="text-neutral-300 text-sm mt-1">Se "fora de escopo" estiver em branco, o agente vai adicionar features que parecem razoáveis. Se "em aberto" estiver vazio, decisões serão tomadas sem você. Preencha todas as seções.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: ideia bruta → spec aprovado</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Este exercício une todos os tópicos anteriores numa sessão real de brainstorming. A meta é partir de uma ideia propositalmente vaga e chegar a uma spec que poderia ir direto para o módulo de planejamento sem nenhuma ambiguidade.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Abra uma sessão e diga: <em>"Quero fazer um brainstorming sobre [sua próxima feature]"</em></span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Deixe o agente fazer todas as perguntas sem antecipar respostas</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Abra o servidor visual se disponível, ou peça ao agente para gerar o doc</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Valide seção por seção, corrigindo o que estiver errado</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Confirme que "fora de escopo" e "em aberto" estão preenchidos</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Salve o doc — ele será o input do Módulo 1.3</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">A spec está pronta quando você consegue responder "sim" a: "Qualquer desenvolvedor poderia implementar isso sem fazer uma única pergunta adicional?"</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.2</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Entendi por que o agente usa o método socrático antes de agir</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei extrair uma spec estruturada de uma conversa vaga</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Pratiquei validação incremental seção por seção</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Conheço o servidor visual de brainstorming e como ativá-lo</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei o que uma spec completa deve conter (todas as seções)</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Completei o exercício e tenho uma spec aprovada em mãos</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.3 — Planejamento real com writing-plans</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-3.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.2</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+
+<script>
+const themeToggle = document.getElementById('theme-toggle');
+const darkIcon = document.getElementById('theme-toggle-dark-icon');
+const lightIcon = document.getElementById('theme-toggle-light-icon');
+const html = document.documentElement;
+if (localStorage.getItem('theme') === 'light') { darkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { lightIcon.classList.remove('hidden'); }
+themeToggle.addEventListener('click', () => {
+  darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+  html.classList.toggle('dark');
+  localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+});
+</script>
+</body>
+</html>

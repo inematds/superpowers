@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.7 — Revisão de Código | Superpowers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#ffffff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .hover\:text-yellow-300:hover{color:#854d0e}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">⚡</span><span class="font-bold text-lg hidden sm:inline">Superpowers</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Agentes de IA</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <nav class="flex items-center space-x-2 text-sm text-neutral-500">
+    <a href="index.html" class="hover:text-neutral-300">Início</a><span>/</span>
+    <a href="index.html" class="hover:text-neutral-300">Superpowers</a><span>/</span>
+    <span class="text-emerald-400">Módulo 1.7</span>
+  </nav>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">MÓDULO 1.7</span></div>
+  <h1 class="text-3xl font-extrabold mb-3">👀 Revisão de código com agentes</h1>
+  <p class="text-neutral-400 text-lg mb-6">Como pedir e receber revisões de código de forma estruturada — revisando contra o plano, não contra intuição.</p>
+  <div class="flex flex-wrap gap-4 text-sm">
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📋</span><span>6 tópicos</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>⏱️</span><span>~25 min</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>🎯</span><span>Intermediário</span></span>
+    <span class="flex items-center space-x-1 text-neutral-500"><span>📖</span><span>Teoria + Prática</span></span>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">1</span>
+      <h2 class="text-2xl font-bold">📝 requesting-code-review: checklist pré-revisão</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Antes de solicitar uma revisão de código, o agente executa um checklist pré-revisão para garantir que o código está em condições de ser revisado. Solicitar review de código sujo não economiza tempo — apenas transfere o trabalho de limpeza para o revisor.</p>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-5 mb-5">
+      <h3 class="text-emerald-400 font-semibold mb-3">Checklist pré-revisão</h3>
+      <ul class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Todos os testes passando (<code class="bg-dark-700 px-1 rounded">npm test</code> sem falhas)</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Sem console.log de debug deixados no código</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Sem código comentado sem explicação</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Nomes de variáveis e funções claros e descritivos</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Documentação atualizada se houver mudança de API</span></li>
+        <li class="flex items-center space-x-2"><span class="text-emerald-400">□</span><span>Diff limitado ao escopo da feature (sem mudanças extras)</span></li>
+      </ul>
+    </div>
+    <div class="bg-dark-700/50 rounded-lg p-4">
+      <p class="text-neutral-300 text-sm">O checklist pré-revisão é responsabilidade do agente que implementou. Você pode pedir: <em>"Execute o checklist pré-revisão antes de me apresentar o código"</em>.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">2</span>
+      <h2 class="text-2xl font-bold">🔄 receiving-code-review: feedback com rigor técnico</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Receber feedback de code review corretamente é uma habilidade. Agentes frequentemente implementam o primeiro entendimento do feedback — que pode não ser o que o revisor quis dizer. O processo correto exige confirmação antes de implementação.</p>
+    <div class="space-y-3 mb-5">
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-blue-400 font-bold text-sm w-6 flex-shrink-0">1.</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Entender:</strong> Reformular o feedback com suas próprias palavras para confirmar o entendimento</p></div>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-blue-400 font-bold text-sm w-6 flex-shrink-0">2.</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Confirmar motivo:</strong> Entender por que o revisor apontou isso — qual problema está sendo evitado</p></div>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-blue-400 font-bold text-sm w-6 flex-shrink-0">3.</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Propor solução:</strong> Apresentar a abordagem de correção antes de implementar</p></div>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4 flex items-start space-x-3">
+        <span class="text-emerald-400 font-bold text-sm w-6 flex-shrink-0">4.</span>
+        <div><p class="text-neutral-300 text-sm"><strong>Implementar:</strong> Só então implementar a correção aprovada</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">3</span>
+      <h2 class="text-2xl font-bold">🎯 Revisar contra o plano, não contra intuição</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">O critério objetivo de uma revisão de código no Superpowers é o plano aprovado. Cada linha do código é avaliada contra: "Isso estava no plano? Isso cumpre o critério de aceitação da spec?" — não contra "Eu teria feito diferente?" ou "Isso não parece certo".</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <h3 class="text-red-400 font-semibold mb-2 text-sm">Review baseado em intuição</h3>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• "Eu usaria uma classe aqui"</li>
+          <li>• "Prefiro o padrão X ao Y"</li>
+          <li>• "Isso não me parece Pythônico"</li>
+          <li>• "Eu nomearia diferente"</li>
+        </ul>
+        <p class="text-red-400 text-xs mt-2">Inconsistente, subjetivo, cria conflito</p>
+      </div>
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+        <h3 class="text-emerald-400 font-semibold mb-2 text-sm">Review contra o plano</h3>
+        <ul class="space-y-1 text-neutral-400 text-sm">
+          <li>• "O critério #3 da spec não está coberto"</li>
+          <li>• "A tarefa 5 especificou o caminho X, está Y"</li>
+          <li>• "O caso de borda 'email vazio' não tem handler"</li>
+          <li>• "O teste de verificação da tarefa 3 falha"</li>
+        </ul>
+        <p class="text-emerald-400 text-xs mt-2">Objetivo, verificável, produtivo</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">4</span>
+      <h2 class="text-2xl font-bold">🚦 Severidade de issues: bloqueadores vs. sugestões</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Nem toda issue de review tem a mesma urgência. Classificar issues por severidade evita que o desenvolvimento seja paralisado por feedback estilístico enquanto problemas reais esperam na fila.</p>
+    <div class="space-y-3 mb-5">
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+        <div class="flex items-center space-x-2 mb-2"><span class="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs font-bold">BLOQUEADOR</span><span class="text-sm text-neutral-300">Impede o merge. Deve ser corrigido.</span></div>
+        <ul class="text-neutral-400 text-sm space-y-1 ml-4">
+          <li>• Bug de segurança ou dados</li>
+          <li>• Critério de aceitação não cumprido</li>
+          <li>• Teste que falha na CI</li>
+          <li>• Regressão em funcionalidade existente</li>
+        </ul>
+      </div>
+      <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+        <div class="flex items-center space-x-2 mb-2"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded text-xs font-bold">IMPORTANTE</span><span class="text-sm text-neutral-300">Deve ser corrigido mas não bloqueia o merge.</span></div>
+        <ul class="text-neutral-400 text-sm space-y-1 ml-4">
+          <li>• Problema de performance relevante</li>
+          <li>• Falta de tratamento de erro</li>
+          <li>• Código duplicado significativo</li>
+        </ul>
+      </div>
+      <div class="bg-dark-700/50 rounded-lg p-4">
+        <div class="flex items-center space-x-2 mb-2"><span class="bg-dark-600 text-neutral-400 px-2 py-0.5 rounded text-xs font-bold">SUGESTÃO</span><span class="text-sm text-neutral-300">Melhoria opcional para o futuro.</span></div>
+        <ul class="text-neutral-400 text-sm space-y-1 ml-4">
+          <li>• Preferência estilística</li>
+          <li>• Otimização prematura</li>
+          <li>• Alternativa de naming</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">5</span>
+      <h2 class="text-2xl font-bold">🤖 O code reviewer autônomo</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Para code review mais objetivo, use um agente separado como revisor — um agente que não participou da implementação e não tem o viés de quem escreveu o código. O revisor autônomo recebe apenas o diff e a spec, sem o histórico da implementação.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Como configurar o revisor autônomo</h3>
+      <ol class="space-y-2 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Abra uma nova sessão (contexto limpo, sem histórico de implementação)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Passe a spec aprovada e o diff do código</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Instrua: <em>"Você é o revisor. Revise contra a spec. Classifique cada issue por severidade."</em></span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>O revisor não sabe o que o implementador quis fazer — apenas o que está escrito</span></li>
+      </ol>
+    </div>
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+      <p class="text-blue-400 font-semibold text-sm">Por que contexto separado importa</p>
+      <p class="text-neutral-300 text-sm mt-1">O agente que implementou sabe o que tentou fazer e tem dificuldade de ver o que realmente está no código. Um agente sem esse contexto vê o código como qualquer desenvolvedor novo veria — e encontra issues que o implementador ignoraria.</p>
+    </div>
+  </section>
+
+  <section class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 text-xl font-bold flex items-center justify-center flex-shrink-0">6</span>
+      <h2 class="text-2xl font-bold">🛠️ Prática: ciclo completo de revisão em um PR real</h2>
+    </div>
+    <p class="text-neutral-300 mb-6">Usando o código do módulo anterior, execute o ciclo completo de code review: checklist pré-revisão, review por agente externo, classificação de issues, correção e confirmação de merge.</p>
+    <div class="bg-dark-700/50 rounded-lg p-5 mb-5">
+      <h3 class="text-neutral-300 font-semibold mb-3">Roteiro do exercício</h3>
+      <ol class="space-y-3 text-neutral-300 text-sm">
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Execute o checklist pré-revisão no código do módulo anterior</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Abra nova sessão e configure o revisor autônomo com spec + diff</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Receba o relatório de review com issues classificadas por severidade</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">4.</span><span>Corrija todos os bloqueadores seguindo o processo de receiving-code-review</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">5.</span><span>Documente as sugestões para o futuro</span></li>
+        <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold flex-shrink-0">6.</span><span>Confirme que o código está pronto para merge</span></li>
+      </ol>
+    </div>
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+      <p class="text-emerald-400 font-semibold text-sm">Critério de conclusão</p>
+      <p class="text-neutral-300 text-sm mt-1">Zero bloqueadores pendentes, todos os testes passando, checklist pré-revisão completo. O código está pronto para merge ou abertura de PR.</p>
+    </div>
+  </section>
+
+  <section class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-8">
+    <h2 class="text-xl font-bold mb-4">Resumo do Módulo 1.7</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei executar o checklist pré-revisão antes de solicitar review</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Processo de receber feedback com rigor: entender → confirmar → propor → implementar</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Reviso contra o plano, não contra intuição</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Classifico issues por severidade: bloqueador, importante, sugestão</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Sei usar agente externo como revisor autônomo sem viés de implementação</span></div>
+      <div class="flex items-center space-x-2 text-sm"><span class="text-emerald-400">✓</span><span class="text-neutral-300">Completei o ciclo completo de review em um PR real</span></div>
+    </div>
+    <div class="flex items-center justify-between p-4 bg-dark-800 rounded-lg mb-4">
+      <span class="text-neutral-400 text-sm">Próximo módulo: <strong class="text-neutral-100">1.8 — Git Worktrees e branches paralelos</strong></span>
+    </div>
+    <div class="flex justify-start space-x-3">
+      <a href="index.html" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">← Voltar para Trilha</a>
+      <a href="modulo-1-8.html" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">Próximo Módulo →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="border-t border-dark-600 bg-dark-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-2 text-neutral-500 text-sm"><span class="text-yellow-400">⚡</span><span>Superpowers — Módulo 1.7</span></div>
+    <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+  </div>
+</footer>
+<script>
+const themeToggle=document.getElementById('theme-toggle');const darkIcon=document.getElementById('theme-toggle-dark-icon');const lightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+if(localStorage.getItem('theme')==='light'){darkIcon.classList.remove('hidden');html.classList.remove('dark');}else{lightIcon.classList.remove('hidden');}
+themeToggle.addEventListener('click',()=>{darkIcon.classList.toggle('hidden');lightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+</script>
+</body>
+</html>
