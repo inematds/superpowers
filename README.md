@@ -160,6 +160,26 @@ gemini extensions update superpowers
 - **writing-skills** - Crie novas skills seguindo as melhores práticas (inclui metodologia de teste)
 - **using-superpowers** - Introdução ao sistema de skills
 
+## Superpowers vs. BMAD
+
+Duas das principais metodologias de desenvolvimento com agentes de IA — abordagens diferentes para problemas diferentes.
+
+| Dimensão | BMAD | Superpowers |
+|---|---|---|
+| **Modelo mental** | Time de agentes com roles fixos (PM, Arquiteto, Dev, UX...) | Skills composáveis injetadas em um único agente |
+| **Escopo** | Ciclo completo: ideia → PRD → arquitetura → stories → deploy | Fase técnica: planejamento, implementação, TDD, revisão |
+| **Artefatos** | PRD, Architecture Doc, Story Files | Plano de tarefas, spec document, branches de worktree |
+| **Foco central** | Orquestração de personas e documentação estruturada | TDD, subagents, qualidade de código |
+| **Dependências** | Framework próprio com configuração | Zero dependências — só prompt |
+| **Público** | Times que querem processo ágil completo | Devs solo/dupla com agente de código |
+| **Filosofia** | "Guie a IA com roles e documentos" | "Automatize boas práticas de engenharia via skills" |
+
+**BMAD** é um processo de negócio completo — começa com o Analyst definindo o problema, passa pelo PM, Arquiteto, Scrum Master, e só então chega ao Dev implementando story por story. Ideal para times que querem estrutura ágil formal.
+
+**Superpowers** é mais cirúrgico — não define personas, define *comportamentos técnicos*: TDD antes do código, plano antes da execução, subagentes com revisão em 2 estágios. Você ainda é o PM e o arquiteto — o agente só é mais disciplinado na hora de implementar.
+
+**Na prática:** os dois são complementares. BMAD decide *o que construir*, Superpowers garante *como construir bem*.
+
 ## Filosofia
 
 - **Desenvolvimento Orientado a Testes** - Escreva testes primeiro, sempre
